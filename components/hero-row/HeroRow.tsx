@@ -1,18 +1,30 @@
 import * as React from "react";
 import { View, Text } from "../Themed";
 import { StyleSheet, Image } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { IHero } from "../../types";
 
-export default function HeroRow() {
+interface IProps {
+  index: number
+  hero: IHero
+}
+
+export default function HeroRow({index, hero}: IProps) {
+  const alignment = index % 2 ? "right" : "left" 
+
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container, ...styles[alignment] }}>
       <Image
         style={styles.tinyLogo}
-        source={require("../../assets/heroes/thor.png")}
+        // source={require(`image!${hero.profilePhotoPath}`)}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>Thor Odinson</Text>
-        <Text style={styles.description}>Thor Odinson wields the power of the ancient Asgardians to fight evil throughout the Nine Realms and beyond.</Text>
+        <Text style={styles.name}>{hero.name}</Text>
+        <Text style={styles.description}>{hero.description}</Text>
       </View>
+      {/* <View style={styles.iconContainer}>
+        <FontAwesome size={30} style={styles.icon} name="chevron-circle-right" />
+      </View> */}
     </View>
   );
 }
@@ -29,6 +41,12 @@ const styles = StyleSheet.create({
     borderBottomColor: "white",
     borderBottomWidth: 1,
   },
+  left: {
+    flexDirection: "row"
+  },
+  right: {
+    flexDirection: "row-reverse"
+  },
   tinyLogo: {
     height: 100,
     width: 100,
@@ -42,5 +60,14 @@ const styles = StyleSheet.create({
   infoContainer: {
     paddingLeft: 10,
     flex: 1,
+  }, 
+  iconContainer : {
+    flex: 1,
+    justifyContent: "center",
+    alignItems:"flex-end",
+    height: "100%"
   },
+  icon: {
+    color: 'white',
+  }
 });
