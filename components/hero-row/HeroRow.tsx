@@ -16,15 +16,12 @@ export default function HeroRow({index, hero}: IProps) {
     <View style={{...styles.container, ...styles[alignment] }}>
       <Image
         style={styles.tinyLogo}
-        // source={require(`image!${hero.profilePhotoPath}`)}
+        source={hero.profilePhotoPath}
       />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{hero.name}</Text>
         <Text style={styles.description}>{hero.description}</Text>
       </View>
-      {/* <View style={styles.iconContainer}>
-        <FontAwesome size={30} style={styles.icon} name="chevron-circle-right" />
-      </View> */}
     </View>
   );
 }
@@ -34,7 +31,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     flex: 1,
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "flex-start",
     maxHeight: 150,
     minWidth: "90%",
