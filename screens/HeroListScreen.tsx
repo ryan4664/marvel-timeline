@@ -1,7 +1,6 @@
 import * as React from "react";
 import { FlatList, SafeAreaView, StyleSheet, TextInput } from "react-native";
 import HeroRow from "../components/hero-row/HeroRow";
-import { Text, View } from "../components/Themed";
 import { IHero, RootTabScreenProps } from "../types";
 
 const herosList: IHero[] = [
@@ -19,7 +18,7 @@ const herosList: IHero[] = [
   },
 ];
 
-export default function TabOneScreen({
+export default function HeroListScreen({
   navigation,
 }: RootTabScreenProps<"TabOne">) {
   const [heros, setHeros] = React.useState<IHero[]>(herosList);
@@ -27,8 +26,10 @@ export default function TabOneScreen({
 
   React.useEffect(() => {
     if (searchText.length) {
-      let newHeroList = herosList.filter((x) => x.name.includes(searchText));
-      setHeros([...newHeroList])
+      let newHeroList = herosList.filter((x) =>
+        x.name.toLowerCase().includes(searchText.toLowerCase())
+      );
+      setHeros([...newHeroList]);
     } else {
       setHeros(herosList);
     }

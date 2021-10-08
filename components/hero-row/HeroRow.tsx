@@ -1,23 +1,19 @@
 import * as React from "react";
-import { View, Text } from "../Themed";
-import { StyleSheet, Image } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { Image, StyleSheet } from "react-native";
 import { IHero } from "../../types";
+import { Text, View } from "../Themed";
 
 interface IProps {
-  index: number
-  hero: IHero
+  index: number;
+  hero: IHero;
 }
 
-export default function HeroRow({index, hero}: IProps) {
-  const alignment = index % 2 ? "right" : "left" 
+export default function HeroRow({ index, hero }: IProps) {
+  const alignment = index % 2 ? "right" : "left";
 
   return (
-    <View style={{...styles.container, ...styles[alignment] }}>
-      <Image
-        style={styles.tinyLogo}
-        source={hero.profilePhotoPath}
-      />
+    <View style={{ ...styles.container, ...styles[alignment] }}>
+      <Image style={styles.tinyLogo} source={hero.profilePhotoPath} />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{hero.name}</Text>
         <Text style={styles.description}>{hero.description}</Text>
@@ -39,10 +35,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   left: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   right: {
-    flexDirection: "row-reverse"
+    flexDirection: "row-reverse",
   },
   tinyLogo: {
     height: 100,
@@ -57,14 +53,14 @@ const styles = StyleSheet.create({
   infoContainer: {
     paddingLeft: 10,
     flex: 1,
-  }, 
-  iconContainer : {
+  },
+  iconContainer: {
     flex: 1,
     justifyContent: "center",
-    alignItems:"flex-end",
-    height: "100%"
+    alignItems: "flex-end",
+    height: "100%",
   },
   icon: {
-    color: 'white',
-  }
+    color: "white",
+  },
 });
